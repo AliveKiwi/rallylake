@@ -6,10 +6,12 @@ const { usersRouter } = require('../controllers/UserController');
 const { volunteerRouter } = require('../controllers/VolunteerController');
 const { corporateRouter } = require('../controllers/CorporateController');
 const { contactRouter } = require('../controllers/ContactController');
+const { eventsRouter } = require('../controllers/EventsController');
 
 router.use('/api/lakes', lakesRouter);
 router.use('/api/zones', zonesRouter);
 router.use('/api/users', usersRouter);
+router.use('/api/events', eventsRouter);
 
 router.use('/api/volunteer', volunteerRouter);
 router.use('/api/corporate', corporateRouter);

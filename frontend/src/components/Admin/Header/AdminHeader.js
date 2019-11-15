@@ -39,12 +39,12 @@ class AdminHeader extends React.Component {
               </Dropdown.Menu>
             </Dropdown>
 
-            <Link to="/viewLakes">Lakes</Link>
+            <Link to="/lakes">Lakes</Link>
             <Link to="/viewEvents">Events</Link>
             <Link to="/viewZones">Zones</Link>
             <Link to="/viewVolunteers">Volunteers</Link>
             <Link to="/viewCorporates">Corporates</Link>
-            <Link to="/Contacts">Contacts</Link>
+            <Link to="/viewContacts">Contacts</Link>
             <Link to="/Complaints">Complaints</Link>
 
             <Dropdown text="Admin">

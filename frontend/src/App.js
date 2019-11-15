@@ -15,16 +15,18 @@ import Contact from './components/Guest/pages/Contact/Contact';
 import Login from './components/Admin/pages/Login/Login';
 
 // import Events from "./components/Guest/pages/Event/Events";
-// import LakeForm from "./components/Admin/LakeForm";
-// import EventForm from "./components/Admin/EventForm";
+import LakeForm from './components/Admin/pages/LakeForm';
+
+import Zone from './components/Admin/pages/Zones/Zone';
+import ViewVolunteer from './components/Admin/pages/Volunteers/ViewVolunteer';
+import ViewCorporate from './components/Admin/pages/Corporates/ViewCorporate';
+import ViewContact from './components/Admin/pages/Contacts/ViewContact';
+import EventForm from './components/Admin/pages/EventForm';
+// import ZoneForm from './components/Admin/pages//ZoneForm';
 // import ViewComplaints from "./components/Admin/ViewComplaints";
-// import ViewContact from "./components/Admin/ViewContact";
 // import ViewCorporates from "./components/Admin/ViewCorporates";
 // import ViewLakes from "./components/Admin/ViewLakes";
-// import ViewVolunteers from "./components/Admin/ViewVolunteers";
-// import ViewZones from "./components/Admin/ViewZones";
 // import ViewEvents from "./components/Admin/ViewEvents";
-// import ZoneForm from "./components/Admin/ZoneForm";
 
 class App extends React.Component {
   constructor(props) {
@@ -102,11 +104,29 @@ class App extends React.Component {
               }}
             />
 
+            <Route exact={true} path="/lakeForm" component={LakeForm} />
+
+            <Route exact={true} path="/viewZones" component={Zone} />
+
+            <Route
+              exact={true}
+              path="/viewVolunteers"
+              component={ViewVolunteer}
+            />
+            <Route
+              exact={true}
+              path="/viewCorporates"
+              component={ViewCorporate}
+            />
+            <Route exact={true} path="/viewContacts" component={ViewContact} />
+            <Route exact={true} path="/eventForm" component={EventForm} />
+            {/* <Route exact={true} path="/zoneForm" component={ZoneForm} /> */}
+
             {/* 
             <Route exact={true} path="/events" component={Events} />
          */}
-            {/* <Route exact={true} path="/lakeForm" component={LakeForm} />
-            <Route exact={true} path="/eventForm" component={EventForm} /> */}
+            {/*
+             */}
             {/* <Route
               exact={true}
               path="/viewComplaints"
@@ -120,13 +140,7 @@ class App extends React.Component {
             />
             <Route exact={true} path="/viewEvents" component={ViewEvents} />
             <Route exact={true} path="/viewLakes" component={ViewLakes} />
-            <Route
-              exact={true}
-              path="/viewVolunteers"
-              component={ViewVolunteers}
-            />
-            <Route exact={true} path="/viewZones" component={ViewZones} />
-            <Route exact={true} path="/zoneForm" component={ZoneForm} />
+           
             
              */}
           </Switch>

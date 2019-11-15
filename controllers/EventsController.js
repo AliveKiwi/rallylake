@@ -1,5 +1,6 @@
 const express = require('express');
-const { Lake } = require('../models/Lake');
+const { Event } = require('../models/Event');
+
 const multer = require('multer');
 
 const router = express.Router();
@@ -15,14 +16,14 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-// localhost:3000/lakes/register
+// localhost:3000/events/register
 router.post('/register', function(req, res) {
   const body = req.body;
-  const lake = new Lake(body);
-  lake
+  const event = new Event(body);
+  event
     .save()
-    .then(function(lake) {
-      res.send(lake);
+    .then(function(event) {
+      res.send(event);
     })
     .catch(function(err) {
       res.send(err);
@@ -30,33 +31,33 @@ router.post('/register', function(req, res) {
 });
 
 router.get('/', function(req, res) {
-  Lake.find()
-    .then(function(lakes) {
-      res.send(lakes);
+  Event.find()
+    .then(function(events) {
+      res.send(events);
     })
     .catch(function(err) {
       res.send(err);
     });
 });
 
-router.put('/update/:recordNumber', function(req, res) {
+router.put('/update/:name', function(req, res) {
   const body = req.body;
-  const recordNumber = req.body.params;
-  Lake.findOneAndUpdate(recordNumber, body, { new: true })
-    .then(function(lake) {
-      res.send(lake);
+  const name = req.body.params;
+  Event.findOneAndUpdate(name, body, { new: true })
+    .then(function(event) {
+      res.send(event);
     })
     .catch(function(err) {
       res.send(err);
     });
 });
 
-router.delete('/delete/:recordNumber', function(req, res) {
+router.delete('/delete/:name', function(req, res) {
   console.log(req.body.params);
-  const recordNumber = req.body.params;
-  Lake.deleteOne(recordNumber)
-    .then(function(lake) {
-      res.send(lake);
+  const name = req.body.params;
+  Event.deleteOne(name)
+    .then(function(event) {
+      res.send(event);
     })
     .catch(function(err) {
       res.send(err);
@@ -64,5 +65,5 @@ router.delete('/delete/:recordNumber', function(req, res) {
 });
 
 module.exports = {
-  lakesRouter: router
+  eventsRouter: router
 };
