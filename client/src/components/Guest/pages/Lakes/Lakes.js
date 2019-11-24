@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Image from '../../../../images/image.jpg';
+import LakeCard from './LakeCard';
 
 class Lakes extends React.Component {
   constructor(props) {
@@ -25,29 +25,19 @@ class Lakes extends React.Component {
   }
 
   render() {
+    let container = {
+      marginTop: '58px',
+      marginBottom: '70px',
+      marginRight: '10px',
+      marginLeft: '10px',
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-evenly'
+    };
     return (
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <div style={container}>
         {this.state.data.map(data => {
-          return (
-            <div
-              className="card"
-              style={{
-                width: '18rem',
-                flex: 1,
-                padding: '10px',
-                margin: '6px'
-              }}
-            >
-              <img src={Image} className="card-img-top" alt="..." />
-              <div className="card-body">
-                <h5 className="card-title">{data.recordNumber}</h5>
-                <p className="card-text">{data.divison}</p>
-                <a href="#" className="btn btn-primary">
-                  Go somewhere
-                </a>
-              </div>
-            </div>
-          );
+          return <LakeCard key={data._id} cardData={data}></LakeCard>;
         })}
       </div>
     );

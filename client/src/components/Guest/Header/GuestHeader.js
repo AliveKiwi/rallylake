@@ -1,35 +1,50 @@
 import React from 'react';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
+import { Dropdown } from 'semantic-ui-react';
+import './GuestHeader.css';
 
-const GuestHeader = () => {
-  const navbar = { backgroundColor: '#1E90FF', width: '100%' };
-  return (
-    <Navbar style={navbar} expanded="true" variant="teal">
-      <Navbar.Brand href="/">Rally For Lakes</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Link to="/">Home</Link>
-
-          <Link to="/lakes">Lakes</Link>
-
-          <Link to="/events">Events</Link>
-
-          <Link to="/about">About Us</Link>
-
-          <NavDropdown title="Join Us" id="basic-nav-dropdown">
-            <NavDropdown.Item to="/volunteer">Volunteer</NavDropdown.Item>
-            <NavDropdown.Item to="/corporates">Corporates</NavDropdown.Item>
-          </NavDropdown>
-
-          <Link to="/contact">Contact Us</Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
-  );
-};
+class GuestHeader extends React.Component {
+  render() {
+    const HeaderStyle = {
+      backgroundColor: '#3393ff',
+      width: '100%',
+      height: 48,
+      position: 'fixed',
+      margin: 0,
+      top: 0,
+      zIndex: '100'
+    };
+    const MenuStyle = {
+      display: 'flex-inline',
+      textAlign: 'right'
+    };
+    return (
+      <div style={HeaderStyle} className="ui equal width height grid">
+        <div className="column">
+          <div>1</div>
+        </div>
+        <div style={MenuStyle} className="column">
+          <div>
+            <Link to="/">Home</Link>
+            <Link to="/lakes">Lakes</Link>
+            <Link to="/events">Events</Link>
+            <Link to="/about">About Us</Link>
+            <Dropdown text="Join Us">
+              <Dropdown.Menu direction="left">
+                <Dropdown.Item>
+                  <Link to="/volunteers">Volunteers</Link>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Link to="/corporates">Corporates</Link>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Link to="/contact">Contact Us</Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default GuestHeader;

@@ -1,36 +1,154 @@
 import React from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
+import axios from 'axios';
 
-const Corporates = () => {
-  return (
-    <MDBContainer>
-      <MDBRow>
-        <MDBCol md="12">
-          <form>
-            <p className="h1 text-center mb-4">Join Us</p>
-            <p className="h3 text-center mb-4">Corporates</p>
-            <label>Your name</label>
-            <input type="text" id="name" />
-            <br />
-            <label>Your email</label>
-            <input type="email" id="email" />
-            <br />
-            <label>Contact No.</label>
-            <input type="text" id="contact" />
-            <br />
-            <label>Company Name</label>
-            <input type="text" id="companyName" />
-            <br />
-            <div className="text-center mt-4">
-              <MDBBtn color="indigo" type="submit" id="registerButton">
-                Register
-              </MDBBtn>
+class Corporates extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      firstName: '',
+      lastName: '',
+      companyName: '',
+      email: '',
+      mobile: ''
+    };
+  }
+
+  handleChange = e => {
+    e.persist();
+    this.setState(() => ({
+      [e.target.name]: e.target.value
+    }));
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    // if I use this it works
+    const formData = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      companyName: this.state.companyName,
+      email: this.state.email,
+      mobile: this.state.mobile
+    };
+
+    axios
+      .post('/api/corporate/register', formData)
+      .then(response => {
+        this.handleSubmit(response.data);
+
+        this.setState(() => ({
+          firstName: '',
+          lastName: '',
+          companyName: '',
+          email: '',
+          mobile: ''
+        }));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  render() {
+    const container = {
+      marginTop: '58px',
+      marginBottom: '70px',
+      marginRight: '10px',
+      marginLeft: '10px',
+      width: '100%',
+      display: 'flex',
+      // flexWrap: 'wrap',
+      justifyContent: 'center'
+    };
+    return (
+      <div style={container}>
+        <div className="ui equal width grid">
+          <div className="row">
+            <div className="column">
+              <div
+                style={{ fontWeight: 'bold', textAlign: 'center' }}
+                className="ui segment"
+              >
+                Corporate's Form
+              </div>
             </div>
-          </form>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
-  );
-};
+          </div>
+          <div className="row">
+            <div className="column">
+              <div className="ui segment">
+                <form className="ui form">
+                  <div className="field">
+                    <label>First Name</label>
+                    <input
+                      placeholder="First Name"
+                      type="text"
+                      value={this.state.firstName}
+                      onChange={this.handleChange}
+                      name="firstName"
+                    />
+                  </div>
+
+                  <div className="field">
+                    <label>Last Name</label>
+                    <input
+                      placeholder="Last Name"
+                      type="text"
+                      value={this.state.lastName}
+                      onChange={this.handleChange}
+                      name="lastName"
+                    />
+                  </div>
+
+                  <div className="field">
+                    <label>Company Name</label>
+                    <input
+                      placeholder="Company Name"
+                      type="text"
+                      value={this.state.companyName}
+                      onChange={this.handleChange}
+                      name="companyName"
+                    />
+                  </div>
+
+                  <div className="field">
+                    <label>Email</label>
+                    <input
+                      placeholder="Email"
+                      type="email"
+                      value={this.state.email}
+                      onChange={this.handleChange}
+                      name="email"
+                    />
+                  </div>
+
+                  <div className="field">
+                    <label>Contact Number</label>
+                    <input
+                      placeholder="Contact Number"
+                      type="text"
+                      value={this.state.mobile}
+                      onChange={this.handleChange}
+                      name="mobile"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="ui button"
+                    onClick={e => this.handleSubmit(e)}
+                  >
+                    Submit
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default Corporates;

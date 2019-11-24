@@ -1,37 +1,68 @@
-import React from "react";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Dropdown } from 'semantic-ui-react';
+import './AdminHeader.css';
 
-const AdminHeader = () => {
-  return (
-    <Navbar bg="primary" expanded="true" variant="teal">
-      <Navbar.Brand to="/">Rally For Lakes</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link> </Nav.Link>
-          <Nav.Link> </Nav.Link>
-          <Nav.Link> </Nav.Link>
-          <Nav.Link> </Nav.Link>
-          <Nav.Link> </Nav.Link>
-          <Nav.Link to="/lakeForm">LakeForm</Nav.Link>
-          <Nav.Link to="/eventForm">EventForm</Nav.Link>
-          <Nav.Link to="/zoneForm">ZoneForm</Nav.Link>
-          <Nav.Link to="/viewLakes">Lakes</Nav.Link>
-          <Nav.Link to="/viewEvents">Events</Nav.Link>
-          <Nav.Link to="/viewZones">Zones</Nav.Link>
-          <Nav.Link to="/viewVolunteers">Volunteers</Nav.Link>
-          <Nav.Link to="/viewCorporates">Corporates</Nav.Link>
-          <Nav.Link to="/viewContact">ViewContact</Nav.Link>
-          <Nav.Link to="/viewComplaints">ViewComplaints</Nav.Link>
-          <NavDropdown title="Admin" id="basic-nav-dropdown">
-            <NavDropdown.Item to="#">Reset Password</NavDropdown.Item>
-            <Nav.Link to="/logot">Logout</Nav.Link>
-          </NavDropdown>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
-  );
-};
+class AdminHeader extends React.Component {
+  render() {
+    const HeaderStyle = {
+      backgroundColor: '#3393ff',
+      width: '100%',
+      height: 48,
+      position: 'fixed',
+      color: 'white',
+      margin: 0,
+      top: 0,
+      zIndex: 100
+    };
+    const MenuStyle = {
+      display: 'flex-inline',
+      textAlign: 'right'
+    };
+    return (
+      <div style={HeaderStyle} className="ui equal width height grid">
+        <div className="column">
+          <div>Rally For Lakes</div>
+        </div>
+        <div style={MenuStyle} className="eleven wide column">
+          <div>
+            <Dropdown text="Forms">
+              <Dropdown.Menu direction="left">
+                <Dropdown.Item>
+                  <Link to="/lakeForm">Lake Form</Link>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Link to="/eventForm">Event Form</Link>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Link to="/zoneForm">Zone Form</Link>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <Link to="/lakes">Lakes</Link>
+            <Link to="/viewEvents">Events</Link>
+            <Link to="/viewZones">Zones</Link>
+            <Link to="/viewVolunteers">Volunteers</Link>
+            <Link to="/viewCorporates">Corporates</Link>
+            <Link to="/viewContacts">Contacts</Link>
+            <Link to="/Complaints">Queries</Link>
+
+            <Dropdown text="Admin">
+              <Dropdown.Menu direction="left">
+                <Dropdown.Item>
+                  <Link to="">Reset Password</Link>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Link to="/logout">Logout</Link>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default AdminHeader;

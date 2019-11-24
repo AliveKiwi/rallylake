@@ -1,14 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-class Volunteer extends React.Component {
+
+class Corporates extends React.Component {
   constructor() {
     super();
-
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      mobile: ''
+      name: '',
+      dateFrom: '',
+      dateTo: '',
+      timings: '',
+      location: '',
+      imgURL: ''
     };
   }
 
@@ -24,22 +26,26 @@ class Volunteer extends React.Component {
 
     // if I use this it works
     const formData = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      email: this.state.email,
-      mobile: this.state.mobile
+      name: this.state.name,
+      dateFrom: this.state.dateFrom,
+      dateTo: this.state.dateTo,
+      timings: this.state.timings,
+      location: this.state.location,
+      imgURL: this.state.imgURL
     };
 
     axios
-      .post('/api/volunteer/register', formData)
+      .post('/register', formData)
       .then(response => {
         this.handleSubmit(response.data);
 
         this.setState(() => ({
-          firstName: '',
-          lastName: '',
-          email: '',
-          mobile: ''
+          name: '',
+          dateFrom: '',
+          dateTo: '',
+          timings: '',
+          location: '',
+          imgURL: ''
         }));
       })
       .catch(err => {
@@ -67,7 +73,7 @@ class Volunteer extends React.Component {
                 style={{ fontWeight: 'bold', textAlign: 'center' }}
                 className="ui segment"
               >
-                Volunteer's Form
+                Event's Form
               </div>
             </div>
           </div>
@@ -76,46 +82,57 @@ class Volunteer extends React.Component {
               <div className="ui segment">
                 <form className="ui form">
                   <div className="field">
-                    <label>First Name</label>
+                    <label>Event Name</label>
                     <input
-                      placeholder="First Name"
+                      placeholder="Event Name"
                       type="text"
-                      value={this.state.firstName}
+                      value={this.state.name}
                       onChange={this.handleChange}
-                      name="firstName"
+                      name="name"
                     />
                   </div>
 
                   <div className="field">
-                    <label>Last Name</label>
+                    <label>Date From</label>
                     <input
-                      placeholder="Last Name"
-                      type="text"
-                      value={this.state.lastName}
+                      placeholder="Date From"
+                      type="date"
+                      value={this.state.dateFrom}
                       onChange={this.handleChange}
-                      name="lastName"
+                      name="dateFrom"
                     />
                   </div>
 
                   <div className="field">
-                    <label>Email</label>
+                    <label>Date To</label>
                     <input
-                      placeholder="Email"
-                      type="email"
-                      value={this.state.email}
+                      placeholder="Date To"
+                      type="text"
+                      value={this.state.dateTo}
                       onChange={this.handleChange}
-                      name="email"
+                      name="dateTo"
                     />
                   </div>
 
                   <div className="field">
-                    <label>Contact Number</label>
+                    <label>Timing</label>
                     <input
-                      placeholder="Contact Number"
+                      placeholder="Timing"
                       type="text"
-                      value={this.state.mobile}
+                      value={this.state.timings}
                       onChange={this.handleChange}
-                      name="mobile"
+                      name="timings"
+                    />
+                  </div>
+
+                  <div className="field">
+                    <label>Location</label>
+                    <input
+                      placeholder="Location"
+                      type="text"
+                      value={this.state.location}
+                      onChange={this.handleChange}
+                      name="location"
                     />
                   </div>
 
@@ -136,4 +153,4 @@ class Volunteer extends React.Component {
   }
 }
 
-export default Volunteer;
+export default Corporates;

@@ -10,6 +10,7 @@
     "concurrently": "^5.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "formidable": "^1.2.1",
     "google-maps-react": "^2.0.2",
     "jsonwebtoken": "^8.5.1",
     "mdbreact": "^4.22.0",
@@ -31,9 +32,7 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm start --prefix client",
-    "frontend": "npm start --prefix frontend",
-    "dev1": "concurrently \"npm run server\" \"npm run client\"",
-    "dev2": "concurrently \"npm run server\" \"npm run frontend\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
