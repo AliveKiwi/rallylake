@@ -21,9 +21,11 @@ router.post(
   function(req, res) {
     const body = req.body;
     const files = req.files;
-    body.imgBefore = files.imgBefore[0].path;
-    body.imgAfter = files.imgAfter[0].path;
+    console.log(files);
 
+    body.imgBefore = files.imgBefore[0].filename;
+    body.imgAfter = files.imgAfter[0].filename;
+    console.log(body);
     const lake = new Lake(body);
     lake
       .save()

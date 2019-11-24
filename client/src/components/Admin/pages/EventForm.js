@@ -1,16 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 
-class Corporates extends React.Component {
+class EventForm extends React.Component {
   constructor() {
     super();
     this.state = {
       name: '',
       dateFrom: '',
       dateTo: '',
-      timings: '',
-      location: '',
-      imgURL: ''
+      timeFrom: '',
+      timeTo: '',
+      imgURL: '',
+      location: ''
     };
   }
 
@@ -29,7 +30,8 @@ class Corporates extends React.Component {
       name: this.state.name,
       dateFrom: this.state.dateFrom,
       dateTo: this.state.dateTo,
-      timings: this.state.timings,
+      timeFrom: this.state.timeFrom,
+      timeTo: this.state.timeTo,
       location: this.state.location,
       imgURL: this.state.imgURL
     };
@@ -43,9 +45,10 @@ class Corporates extends React.Component {
           name: '',
           dateFrom: '',
           dateTo: '',
-          timings: '',
-          location: '',
-          imgURL: ''
+          timeFrom: '',
+          timeTo: '',
+          imgURL: '',
+          location: ''
         }));
       })
       .catch(err => {
@@ -107,7 +110,7 @@ class Corporates extends React.Component {
                     <label>Date To</label>
                     <input
                       placeholder="Date To"
-                      type="text"
+                      type="date"
                       value={this.state.dateTo}
                       onChange={this.handleChange}
                       name="dateTo"
@@ -118,7 +121,18 @@ class Corporates extends React.Component {
                     <label>Timing</label>
                     <input
                       placeholder="Timing"
-                      type="text"
+                      type="time"
+                      value={this.state.timings}
+                      onChange={this.handleChange}
+                      name="timings"
+                    />
+                  </div>
+
+                  <div className="field">
+                    <label>Timing</label>
+                    <input
+                      placeholder="Timing"
+                      type="time"
                       value={this.state.timings}
                       onChange={this.handleChange}
                       name="timings"
@@ -133,6 +147,17 @@ class Corporates extends React.Component {
                       value={this.state.location}
                       onChange={this.handleChange}
                       name="location"
+                    />
+                  </div>
+
+                  <div className="field">
+                    <label>Image</label>
+                    <input
+                      placeholder="Image"
+                      type="file"
+                      onChange={this.onImageUpload}
+                      name="images"
+                      multiple
                     />
                   </div>
 
@@ -153,4 +178,4 @@ class Corporates extends React.Component {
   }
 }
 
-export default Corporates;
+export default EventForm;

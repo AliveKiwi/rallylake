@@ -14,21 +14,15 @@ import Contact from './components/Guest/pages/Contact/Contact';
 
 import Login from './components/Admin/pages/Login/Login';
 
-// import Events from "./components/Guest/pages/Event/Events";
 import LakeForm from './components/Admin/pages/LakeForm';
+import EventForm from './components/Admin/pages/EventForm';
 
 import Zone from './components/Admin/pages/Zones/Zone';
 import ViewVolunteer from './components/Admin/pages/Volunteers/ViewVolunteer';
 import ViewCorporate from './components/Admin/pages/Corporates/ViewCorporate';
 import ViewContact from './components/Admin/pages/Contacts/ViewContact';
-import EventForm from './components/Admin/pages/EventForm';
 
 import LakePage from './components/Guest/pages/Lakes/LakePage';
-// import ZoneForm from './components/Admin/pages//ZoneForm';
-// import ViewComplaints from "./components/Admin/ViewComplaints";
-// import ViewCorporates from "./components/Admin/ViewCorporates";
-// import ViewLakes from "./components/Admin/ViewLakes";
-// import ViewEvents from "./components/Admin/ViewEvents";
 
 class App extends React.Component {
   constructor(props) {

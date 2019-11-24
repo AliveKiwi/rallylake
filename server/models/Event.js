@@ -5,7 +5,11 @@ const eventSchema = new Schema({
   name: { type: String },
   dateFrom: { type: Date },
   dateTo: { type: Date },
-  timings: { type: String },
+  dateFrom: { type: Date },
+  dateTo: { type: Date },
+  timeFrom: { type: Date },
+  timeTo: { type: Date },
+
   location: { type: String },
   imgURL: { type: String }
 });
