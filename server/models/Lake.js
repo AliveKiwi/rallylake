@@ -8,7 +8,7 @@ const lakeSchema = new Schema({
   taluk: { type: String },
   hobli: { type: String },
   village: { type: String },
-  zone: { type: Schema.Types.ObjectId, ref: 'Zone' },
+  zoneCode: { type: String },
   status: { type: String },
   video: { type: String },
   imgBefore: { type: String },

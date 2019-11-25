@@ -1,27 +1,39 @@
 const express = require('express');
+const multer = require('multer');
+const router = express.Router();
+const uploadLocation = require('../../client/src/uploads/uploadsLocation');
+
 const { Event } = require('../models/Event');
 
-const multer = require('multer');
-
-const router = express.Router();
-
-var storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads');
+let storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, uploadLocation);
   },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname + '-' + Date.now());
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname);
   }
 });
 
 var upload = multer({ storage: storage });
 
-// localhost:3000/events/register
-router.post('/register', function(req, res) {
+router.post('/register', upload.single('imgName'), function(req, res) {
   const body = req.body;
+  const file = req.file;
+  body.imgName = file.filename;
   const event = new Event(body);
   event
     .save()
+    .then(function(event) {
+      res.send(event);
+    })
+    .catch(function(err) {
+      res.send(err);
+    });
+});
+
+router.get('/:_id', function(req, res) {
+  const _id = req.params._id;
+  Event.findOne({ _id })
     .then(function(event) {
       res.send(event);
     })

@@ -1,17 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-
 class EventForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       name: '',
       dateFrom: '',
       dateTo: '',
-      timeFrom: '',
-      timeTo: '',
-      imgURL: '',
-      location: ''
+      timeFrom: '00:00:00',
+      timeTo: '00:00:00',
+      location: '',
+      imgName: ''
     };
   }
 
@@ -22,38 +21,59 @@ class EventForm extends React.Component {
     }));
   };
 
+  onImageUpload = event => {
+    this.setState({
+      imgName: event.target.files[0],
+      loaded: 0
+    });
+  };
+
   handleSubmit = e => {
     e.preventDefault();
 
-    // if I use this it works
-    const formData = {
-      name: this.state.name,
-      dateFrom: this.state.dateFrom,
-      dateTo: this.state.dateTo,
-      timeFrom: this.state.timeFrom,
-      timeTo: this.state.timeTo,
-      location: this.state.location,
-      imgURL: this.state.imgURL
-    };
+    const formData = new FormData();
+
+    formData.append('name', this.state.name);
+    formData.append('dateFrom', this.state.dateFrom);
+    formData.append('dateTo', this.state.dateTo);
+    formData.append('timeFrom', this.state.timeFrom);
+    formData.append('timeTo', this.state.timeTo);
+    // formData.append(
+    //   'timeFrom',
+    //   new momemnt(this.state.timeFrom, 'HH:mm:ss').local()
+    // );
+    // formData.append(
+    //   'timeTo',
+    //   new momemnt(this.state.timeTo, 'HH:mm:ss').local()
+    // );
+    formData.append('location', this.state.location);
+    formData.append('imgName', this.state.imgName);
+
+    // for (var x = 0; x < this.state.images.length; x++) {
+    //   formData.append('images', this.state.images[x]);
+    // }
+    console.log(formData);
 
     axios
-      .post('/register', formData)
-      .then(response => {
-        this.handleSubmit(response.data);
-
-        this.setState(() => ({
-          name: '',
-          dateFrom: '',
-          dateTo: '',
-          timeFrom: '',
-          timeTo: '',
-          imgURL: '',
-          location: ''
-        }));
+      .post('/api/events/register', formData, {
+        headers: {
+          'Access-Control-Allow-Origin': true,
+          'Content-Type': 'multipart/form-data'
+        }
       })
       .catch(err => {
         console.log(err);
       });
+    // .then(
+    //   this.setState({
+    //     name: '',
+    //     dateFrom: '',
+    //     dateTo: '',
+    //     timeFrom: '00:00:00',
+    //     timeTo: '00:00:00',
+    //     location: '',
+    //     imgName: ''
+    //   })
   };
 
   render() {
@@ -118,24 +138,24 @@ class EventForm extends React.Component {
                   </div>
 
                   <div className="field">
-                    <label>Timing</label>
+                    <label>Time From</label>
                     <input
                       placeholder="Timing"
                       type="time"
-                      value={this.state.timings}
+                      value={this.state.timeFrom}
                       onChange={this.handleChange}
-                      name="timings"
+                      name="timeFrom"
                     />
                   </div>
 
                   <div className="field">
-                    <label>Timing</label>
+                    <label>Time To</label>
                     <input
                       placeholder="Timing"
                       type="time"
-                      value={this.state.timings}
+                      value={this.state.timeTo}
                       onChange={this.handleChange}
-                      name="timings"
+                      name="timeTo"
                     />
                   </div>
 
@@ -151,13 +171,12 @@ class EventForm extends React.Component {
                   </div>
 
                   <div className="field">
-                    <label>Image</label>
+                    <label>Image </label>
                     <input
                       placeholder="Image"
                       type="file"
                       onChange={this.onImageUpload}
-                      name="images"
-                      multiple
+                      name="imgName"
                     />
                   </div>
 

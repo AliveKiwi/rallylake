@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Icon } from 'semantic-ui-react';
 import LakeImage from '../../../../images/image.jpg';
-
-class LakeCard extends React.Component {
+import moment from 'moment';
+class EventCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,24 +17,25 @@ class LakeCard extends React.Component {
       >
         <img
           style={{ height: 300 }}
-          alt="Lake"
+          alt="Event"
           src={
-            `http://localhost:5000/uploads/${this.state.data.imgAfter}` ||
-            `http://localhost:5000/uploads/${this.state.data.imgBefore}` ||
+            `http://localhost:5000/uploads/${this.state.data.imgName}` ||
             LakeImage
           }
         />
         <Card.Content>
-          <Card.Header>{this.state.data.recordNumber}</Card.Header>
+          <Card.Header>{this.state.data.name}</Card.Header>
           <Card.Meta>
-            <span>{this.state.data.status}</span>
+            <span>
+              {moment.utc(this.state.data.dateFrom).format('hh:mm:ss A')}
+            </span>
           </Card.Meta>
           <Card.Description>
             Matthew is a musician living in Nashville.
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <Link to={`/lakes/${this.state.data.recordNumber}`}>
+          <Link to={`/events/${this.state.data._id}`}>
             <Icon name="info" />
             Read More...
           </Link>
@@ -44,4 +45,4 @@ class LakeCard extends React.Component {
   }
 }
 
-export default LakeCard;
+export default EventCard;

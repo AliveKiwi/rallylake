@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Select from 'react-select';
 
 class LakeForm extends React.Component {
   constructor(props) {
@@ -13,7 +12,7 @@ class LakeForm extends React.Component {
       taluk: '',
       hobli: '',
       village: '',
-      zone: '',
+      zoneCode: '',
       status: '',
       video: '',
       location: '',
@@ -30,13 +29,6 @@ class LakeForm extends React.Component {
       [e.target.name]: e.target.value
     }));
   };
-
-  // onImageUpload = event => {
-  //   this.setState({
-  //     images: event.target.files,
-  //     loaded: 0
-  //   });
-  // };
 
   onImgBeforeUpload = event => {
     this.setState({
@@ -60,19 +52,16 @@ class LakeForm extends React.Component {
     formData.append('taluk', this.state.taluk);
     formData.append('hobli', this.state.hobli);
     formData.append('village', this.state.village);
-    formData.append('zone', this.state.zone);
+    formData.append('zoneCode', this.state.zoneCode);
     formData.append('status', this.state.status);
     formData.append('video', this.state.video);
     formData.append('location', this.state.location);
-    // for (var x = 0; x < this.state.images.length; x++) {
-    //   formData.append('images', this.state.images[x]);
-    // }
     formData.append('imgBefore', this.state.imgBefore);
     formData.append('imgAfter', this.state.imgAfter);
 
     e.preventDefault();
+    console.log(formData);
 
-    //"Content-Type": "multipart/form-data" is compulsory. Multer has to be used for viewing the FormData.
     axios
       .post('/api/lakes/register', formData, {
         headers: {
@@ -88,11 +77,10 @@ class LakeForm extends React.Component {
           taluk: '',
           hobli: '',
           village: '',
-          zone: '',
+          zoneCode: '',
           status: '',
           video: '',
           location: '',
-          // images: null,
           imgBefore: null,
           imgAfter: null
         })
@@ -113,7 +101,7 @@ class LakeForm extends React.Component {
   render() {
     let zones = this.state.zones
       ? this.state.zones.map((zone, index) => (
-          <option key={index} value={zone._id}>
+          <option key={index} value={zone.zoneCode}>
             {zone.zoneCode}
           </option>
         ))
@@ -222,8 +210,8 @@ class LakeForm extends React.Component {
                   <div className="field">
                     <label>Zone</label>
                     <select
-                      name="zone"
-                      value={this.state.zone}
+                      name="zoneCode"
+                      value={this.state.zoneCode}
                       onChange={this.handleChange}
                       style={{ marginRight: 10 }}
                     >
@@ -242,17 +230,6 @@ class LakeForm extends React.Component {
                       name="video"
                     />
                   </div>
-
-                  {/* <div className="field">
-                    <label>Image</label>
-                    <input
-                      placeholder="Image"
-                      type="file"
-                      onChange={this.onImageUpload}
-                      name="images"
-                      multiple
-                    />
-                  </div> */}
 
                   <div className="field">
                     <label>Image Before</label>

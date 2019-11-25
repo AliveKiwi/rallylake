@@ -63,7 +63,10 @@ class LakePage extends Component {
 
               <div className="row ">
                 <div className="column ui segment">Zone</div>
-                <div className="column ui segment">{this.state.data.zone}</div>
+                <div className="column ui segment">
+                  {console.log(this.state.data.zoneCode)}
+                  {this.state.data.zoneCode}
+                </div>
               </div>
             </div>
 
@@ -107,6 +110,7 @@ class LakePage extends Component {
                 {this.state.data.imgBefore ? (
                   <img
                     style={{ width: '99%', height: '50%' }}
+                    alt="Lake Before"
                     src={`http://localhost:5000/uploads/${this.state.data.imgBefore}`}
                   />
                 ) : (
@@ -121,6 +125,7 @@ class LakePage extends Component {
                 {this.state.data.imgBefore ? (
                   <img
                     style={{ width: '99%', height: '50%' }}
+                    alt="Lake After"
                     src={`http://localhost:5000/uploads/${this.state.data.imgAfter}`}
                   />
                 ) : (

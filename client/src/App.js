@@ -6,7 +6,15 @@ import GuestHeader from './components/Guest/Header/GuestHeader';
 import AdminHeader from './components/Admin/Header/AdminHeader';
 import Footer from './components/Footer';
 import Home from './components/Guest/pages/Home/Home';
+
+import Events from './components/Guest/pages/Event/Events';
+import EventPage from './components/Guest/pages/Event/EventPage';
+import EventForm from './components/Admin/pages/EventForm';
+
 import Lakes from './components/Guest/pages/Lakes/Lakes';
+import LakePage from './components/Guest/pages/Lakes/LakePage';
+import LakeForm from './components/Admin/pages/LakeForm';
+
 import About from './components/Guest/pages/About/About';
 import Volunteer from './components/Guest/pages/Join/Volunteer';
 import Corporates from './components/Guest/pages/Join/Corporates';
@@ -14,15 +22,10 @@ import Contact from './components/Guest/pages/Contact/Contact';
 
 import Login from './components/Admin/pages/Login/Login';
 
-import LakeForm from './components/Admin/pages/LakeForm';
-import EventForm from './components/Admin/pages/EventForm';
-
 import Zone from './components/Admin/pages/Zones/Zone';
 import ViewVolunteer from './components/Admin/pages/Volunteers/ViewVolunteer';
 import ViewCorporate from './components/Admin/pages/Corporates/ViewCorporate';
 import ViewContact from './components/Admin/pages/Contacts/ViewContact';
-
-import LakePage from './components/Guest/pages/Lakes/LakePage';
 
 class App extends React.Component {
   constructor(props) {
@@ -62,6 +65,8 @@ class App extends React.Component {
           <Switch>
             <Route exact={true} path="/" component={Home} />
             <Route exact={true} path="/lakes" component={Lakes} />
+            <Route exact={true} path="/events" component={Events} />
+
             <Route exact={true} path="/about" component={About} />
             <Route exact={true} path="/volunteers" component={Volunteer} />
             <Route exact={true} path="/corporates" component={Corporates} />
@@ -122,29 +127,8 @@ class App extends React.Component {
               path="/lakes/:recordNumber"
               component={LakePage}
             />
-            {/* <Route exact={true} path="/zoneForm" component={ZoneForm} /> */}
 
-            {/* 
-            <Route exact={true} path="/events" component={Events} />
-         */}
-            {/*
-             */}
-            {/* <Route
-              exact={true}
-              path="/viewComplaints"
-              component={ViewComplaints}
-            />
-            <Route exact={true} path="/viewContact" component={ViewContact} />
-            <Route
-              exact={true}
-              path="/viewCorporates"
-              component={ViewCorporates}
-            />
-            <Route exact={true} path="/viewEvents" component={ViewEvents} />
-            <Route exact={true} path="/viewLakes" component={ViewLakes} />
-           
-            
-             */}
+            <Route exact={true} path="/events/:_id" component={EventPage} />
           </Switch>
           <Footer />
         </BrowserRouter>
