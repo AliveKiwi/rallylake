@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import momemnt from 'moment';
 class EventForm extends React.Component {
   constructor(props) {
     super(props);
@@ -7,8 +8,8 @@ class EventForm extends React.Component {
       name: '',
       dateFrom: '',
       dateTo: '',
-      timeFrom: '00:00:00',
-      timeTo: '00:00:00',
+      timeFrom: '',
+      timeTo: '',
       location: '',
       imgName: ''
     };
@@ -36,16 +37,16 @@ class EventForm extends React.Component {
     formData.append('name', this.state.name);
     formData.append('dateFrom', this.state.dateFrom);
     formData.append('dateTo', this.state.dateTo);
-    formData.append('timeFrom', this.state.timeFrom);
-    formData.append('timeTo', this.state.timeTo);
-    // formData.append(
-    //   'timeFrom',
-    //   new momemnt(this.state.timeFrom, 'HH:mm:ss').local()
-    // );
-    // formData.append(
-    //   'timeTo',
-    //   new momemnt(this.state.timeTo, 'HH:mm:ss').local()
-    // );
+    // formData.append('timeFrom', this.state.timeFrom);
+    // formData.append('timeTo', this.state.timeTo);
+    formData.append(
+      'timeFrom',
+      new momemnt(this.state.timeFrom, 'HH:mm:ss').local()
+    );
+    formData.append(
+      'timeTo',
+      new momemnt(this.state.timeTo, 'HH:mm:ss').local()
+    );
     formData.append('location', this.state.location);
     formData.append('imgName', this.state.imgName);
 
