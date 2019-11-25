@@ -23,6 +23,8 @@ import Contact from './components/Guest/pages/Contact/Contact';
 import Login from './components/Admin/pages/Login/Login';
 
 import Zone from './components/Admin/pages/Zones/Zone';
+import ZoneForm from './components/Admin/pages/ZoneForm';
+
 import ViewVolunteer from './components/Admin/pages/Volunteers/ViewVolunteer';
 import ViewCorporate from './components/Admin/pages/Corporates/ViewCorporate';
 import ViewContact from './components/Admin/pages/Contacts/ViewContact';
@@ -106,6 +108,7 @@ class App extends React.Component {
             />
 
             <Route exact={true} path="/lakeForm" component={LakeForm} />
+            <Route exact={true} path="/zoneForm" component={ZoneForm} />
 
             <Route exact={true} path="/viewZones" component={Zone} />
 
